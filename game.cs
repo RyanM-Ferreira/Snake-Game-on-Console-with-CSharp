@@ -190,6 +190,7 @@ class InGame
         Console.Clear();
         Console.SetCursorPosition(0, 0);
         drawBoard();
+        debugMenu(debugMenuIsActive, PosX, PosY, snakeLength, directionX, directionY, fruitX, fruitY, mapWidth, mapHeight);
       }
 
       Thread.Sleep(runDelay);
@@ -198,15 +199,20 @@ class InGame
 
   static void debugMenu(bool debugMenuIsActive, int[] PosX, int[] PosY, int snakeLength, int directionX, int directionY, int fruitX, int fruitY, int mapWidth, int mapHeight)
   {
+    Console.SetCursorPosition(0, mapHeight + 7);
+
     if (debugMenuIsActive)
     {
-      Console.SetCursorPosition(0, mapHeight + 7);
       Console.WriteLine("================= DEBUG MENU =================");
       Console.WriteLine($"PosX: {PosX[0],-3}; PosY: {PosY[0],-3}; Snake Size: {snakeLength,-3}");
       Console.WriteLine($"DirectionX: {directionX,-3}; DirectionY: {directionY,-3}");
       Console.WriteLine($"FruitX: {fruitX,-3}; FruitY: {fruitY,-3}");
       Console.WriteLine($"Map Width: {mapWidth,-3}; Map Height: {mapHeight,-3}; Map Size: {mapWidth * mapHeight,-3}");
       Console.WriteLine(new string('=', 46));
+    }
+    else if (!debugMenuIsActive)
+    {
+      Console.WriteLine("Debug Menu is not active. Press D to activate.");
     }
   }
 
