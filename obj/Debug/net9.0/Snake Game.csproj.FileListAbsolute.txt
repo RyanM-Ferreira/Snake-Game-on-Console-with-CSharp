@@ -1,0 +1,14 @@
+E:\Projetos\C#\Snake Game\obj\Debug\net9.0\Snake Game.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projetos\C#\Snake Game\obj\Debug\net9.0\Snake Game.AssemblyInfoInputs.cache
+E:\Projetos\C#\Snake Game\obj\Debug\net9.0\Snake Game.AssemblyInfo.cs
+E:\Projetos\C#\Snake Game\obj\Debug\net9.0\Snake Game.csproj.CoreCompileInputs.cache
+E:\Projetos\C#\Snake Game\bin\Debug\net9.0\Snake Game.exe
+E:\Projetos\C#\Snake Game\bin\Debug\net9.0\Snake Game.deps.json
+E:\Projetos\C#\Snake Game\bin\Debug\net9.0\Snake Game.runtimeconfig.json
+E:\Projetos\C#\Snake Game\bin\Debug\net9.0\Snake Game.dll
+E:\Projetos\C#\Snake Game\bin\Debug\net9.0\Snake Game.pdb
+E:\Projetos\C#\Snake Game\obj\Debug\net9.0\Snake Game.dll
+E:\Projetos\C#\Snake Game\obj\Debug\net9.0\refint\Snake Game.dll
+E:\Projetos\C#\Snake Game\obj\Debug\net9.0\Snake Game.pdb
+E:\Projetos\C#\Snake Game\obj\Debug\net9.0\Snake Game.genruntimeconfig.cache
+E:\Projetos\C#\Snake Game\obj\Debug\net9.0\ref\Snake Game.dll
