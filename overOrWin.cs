@@ -1,3 +1,5 @@
+using System.ComponentModel.Design;
+
 class Result
 {
     public static void CheckGameResult(bool isGameOver, bool Won)
@@ -6,16 +8,19 @@ class Result
         {
             Console.Clear();
 
+            string key = "\nPress Enter to Return to the Menu\nor R to restart the game!\n";
+            string gameEstate = " ";
+
             if (isGameOver)
             {
-                Console.WriteLine("Game Over!\n");
-                Console.WriteLine("Press Enter to Return to the Menu or R to restart the game!\n");
+                gameEstate = "Game Over!\n";
             }
             else if (Won)
             {
-                Console.WriteLine("You Won!\n");
-                Console.WriteLine("Press Enter to Return to the Menu or R to restart the game!");
+                gameEstate = "You Won!\n";
             }
+
+            Dialogues.DialoguesEffetc(gameEstate + key, 50);
 
             ConsoleKeyInfo pressedKey = Console.ReadKey(true);
 

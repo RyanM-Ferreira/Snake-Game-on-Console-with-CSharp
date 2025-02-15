@@ -5,7 +5,7 @@ class Instructions
         Console.Clear();
 
         string title = "=   GAME INSTRUCTIONS   =\n\n";
-        string controls = "Use the arrow keys to control the snake:\n\n";
+        string controls = "Use the arrow keys to control the snake.\n\n";
         string instructions = "Eat the fruits ($ symbols) to\ngrow the snake and earn points.\n\nAvoid hitting the walls or yourself!\n";
         string key = "\n\nPress Enter to start the game...";
 

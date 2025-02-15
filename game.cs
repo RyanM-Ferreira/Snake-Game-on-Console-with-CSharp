@@ -25,7 +25,7 @@ class InGame
     bool isGameOver = false;
     bool Won = false;
 
-    int runDelay = 200;
+    int runDelay = 150;
 
     Console.CursorVisible = false;
     spawnFruit(ref fruitX, ref fruitY, mapWidth, mapHeight);
@@ -83,7 +83,14 @@ class InGame
       {
         score++;
         snakeLength++;
-        spawnFruit(ref fruitX, ref fruitY, mapWidth, mapHeight);
+
+        for (int i = 0; i < snakeLength; i++)
+        {
+          while (PosX[i] == fruitX && PosY[i] == fruitY)
+          {
+            spawnFruit(ref fruitX, ref fruitY, mapWidth, mapHeight);
+          }
+        }
       }
 
       // Verifica se a cobra colidiu com ela mesma.
