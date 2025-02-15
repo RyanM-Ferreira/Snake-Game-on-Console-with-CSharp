@@ -9,7 +9,7 @@ class Instructions
         string instructions = "Eat the fruits ($ symbols) to\ngrow the snake and earn points.\n\nAvoid hitting the walls or yourself!\n";
         string key = "\n\nPress Enter to start the game...";
 
-        Dialogues.DialoguesEffetc(title + controls + instructions + key, 25);
+        Dialogues.DialoguesEffect(title + controls + instructions + key, 25);
 
         while (true)
         {

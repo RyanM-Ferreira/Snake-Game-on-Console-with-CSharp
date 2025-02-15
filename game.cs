@@ -37,7 +37,7 @@ class InGame
   {
     while (true)
     {
-      Console.Clear();
+      Console.SetCursorPosition(0, 0);
       string drawGame = "";
 
       // Movimentação da Cobra.
@@ -162,7 +162,7 @@ class InGame
       // Menu de Debug.
       Console.WriteLine($"Your Score: {score}.\n");
       Console.WriteLine(drawGame);
-      Console.WriteLine($"Debug Menu:\nPosX: {PosX[0]}; PosY: {PosY[0]}; Snake Size: {snakeLength}.\nFruitX: {fruitX}; FruitY: {fruitY}\n\nGame Over? {isGameOver}.\n\nMap Width: {mapWidth}; Map Height: {mapHeight}; Map Size: {mapWidth * mapHeight}.");
+      Console.WriteLine($"Debug Menu:\nPosX: {PosX[0]}; PosY: {PosY[0]}; Snake Size: {snakeLength}.\nDirectionX: {directionX}; DirectionY: {directionY}.\nFruitX: {fruitX}; FruitY: {fruitY}\n\nGame Over? {isGameOver}.\n\nMap Width: {mapWidth}; Map Height: {mapHeight}; Map Size: {mapWidth * mapHeight}.");
       Thread.Sleep(runDelay);
     }
   }
