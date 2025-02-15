@@ -4,12 +4,17 @@ class Instructions
     {
         Console.Clear();
 
-        string title = "=   GAME INSTRUCTIONS   =\n\n";
-        string controls = "Use the arrow keys to control the snake.\n\n";
-        string instructions = "Eat the fruits ($ symbols) to\ngrow the snake and earn points.\n\nAvoid hitting the walls or yourself!\n";
-        string key = "\n\nPress Enter to start the game...";
+        string controls = "- Use the arrow keys to control the snake.\n\n";
+        string instructions = "- Eat the fruits ($ symbols) to grow\n  the snake and earn points.\n\n" +
+                              "- Avoid hitting the walls or yourself!\n";
 
-        Dialogues.DialoguesEffect(title + controls + instructions + key, 25);
+        Console.WriteLine("\n=============================\n" +
+                       "|     GAME INSTRUCTIONS     |\n" +
+                       "=============================\n");
+        Dialogues.DialoguesEffect(controls + instructions, 20);
+        Console.WriteLine("\n=============================\n" +
+                     "|  Press ENTER to start...  |\n" +
+                     "=============================\n");
 
         while (true)
         {

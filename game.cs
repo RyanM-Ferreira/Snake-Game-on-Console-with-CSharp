@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 class InGame
 {
   public static void GameFunction()
@@ -25,20 +27,18 @@ class InGame
     bool isGameOver = false;
     bool Won = false;
 
+    bool debugMenuIsActive = false;
+
     int runDelay = 150;
 
     Console.CursorVisible = false;
     spawnFruit(ref fruitX, ref fruitY, mapWidth, mapHeight);
 
-    Mesh(runDelay, PosX, PosY, ref directionX, ref directionY, mapHeight, mapWidth, ref snakeLength, ref fruitX, ref fruitY, ref isGameOver, ref Won, ref score);
-  }
-
-  static void Mesh(int runDelay, int[] PosX, int[] PosY, ref int directionX, ref int directionY, int mapHeight, int mapWidth, ref int snakeLength, ref int fruitX, ref int fruitY, ref bool isGameOver, ref bool Won, ref int score)
-  {
     while (true)
     {
       Console.SetCursorPosition(0, 0);
-      string drawGame = "";
+
+      string meshGeneration = "";
 
       // Movimentação da Cobra.
       if (Console.KeyAvailable)
@@ -65,9 +65,20 @@ class InGame
           directionX = 1;
           directionY = 0;
         }
+        if (pressedKey.Key == ConsoleKey.D)
+        {
+          if (debugMenuIsActive)
+          {
+            debugMenuIsActive = false;
+          }
+          else if (!debugMenuIsActive)
+          {
+            debugMenuIsActive = true;
+          }
+        }
       }
 
-      // Atualza a posiç~ao dos segmentos da cobra, trocando o atual pela posição do segmento anterior.
+      // Atualiza a posiç~ao dos segmentos da cobra, trocando o atual pela posição do segmento anterior.
       for (int i = snakeLength; i > 0; i--)
       {
         PosX[i] = PosX[i - 1];
@@ -126,17 +137,21 @@ class InGame
       {
         for (int x = -1; x <= mapWidth + 1; x++)
         {
-          if (x == -1 || x == mapWidth + 1 || y == -1 || y == mapHeight + 1)
+          if (x == -1 || x == mapWidth + 1)
           {
-            drawGame += "#";
+            meshGeneration += "|";
+          }
+          else if (y == -1 || y == mapHeight + 1)
+          {
+            meshGeneration += "-";
           }
           else if (PosX[0] == x && PosY[0] == y)
           {
-            drawGame += "O";
+            meshGeneration += "0";
           }
           else if (fruitX == x && fruitY == y)
           {
-            drawGame += "$";
+            meshGeneration += "$";
           }
           else
           {
@@ -145,25 +160,53 @@ class InGame
             {
               if (PosX[i] == x && PosY[i] == y)
               {
-                drawGame += "o";
+                meshGeneration += "o";
                 isBody = true;
                 break;
               }
             }
             if (!isBody)
             {
-              drawGame += " ";
+              meshGeneration += " ";
             }
           }
         }
-        drawGame += "\n";
+        meshGeneration += "\n";
       }
 
-      // Menu de Debug.
-      Console.WriteLine($"Your Score: {score}.\n");
-      Console.WriteLine(drawGame);
-      Console.WriteLine($"Debug Menu:\nPosX: {PosX[0]}; PosY: {PosY[0]}; Snake Size: {snakeLength}.\nDirectionX: {directionX}; DirectionY: {directionY}.\nFruitX: {fruitX}; FruitY: {fruitY}\n\nGame Over? {isGameOver}.\n\nMap Width: {mapWidth}; Map Height: {mapHeight}; Map Size: {mapWidth * mapHeight}.");
+      void drawBoard()
+      {
+        Console.WriteLine($"\n Score: {score}\n");
+        Console.WriteLine(meshGeneration);
+      }
+
+      if (debugMenuIsActive)
+      {
+        drawBoard();
+        debugMenu(debugMenuIsActive, PosX, PosY, snakeLength, directionX, directionY, fruitX, fruitY, mapWidth, mapHeight);
+      }
+      else
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, 0);
+        drawBoard();
+      }
+
       Thread.Sleep(runDelay);
+    }
+  }
+
+  static void debugMenu(bool debugMenuIsActive, int[] PosX, int[] PosY, int snakeLength, int directionX, int directionY, int fruitX, int fruitY, int mapWidth, int mapHeight)
+  {
+    if (debugMenuIsActive)
+    {
+      Console.SetCursorPosition(0, mapHeight + 7);
+      Console.WriteLine("================= DEBUG MENU =================");
+      Console.WriteLine($"PosX: {PosX[0],-3}; PosY: {PosY[0],-3}; Snake Size: {snakeLength,-3}");
+      Console.WriteLine($"DirectionX: {directionX,-3}; DirectionY: {directionY,-3}");
+      Console.WriteLine($"FruitX: {fruitX,-3}; FruitY: {fruitY,-3}");
+      Console.WriteLine($"Map Width: {mapWidth,-3}; Map Height: {mapHeight,-3}; Map Size: {mapWidth * mapHeight,-3}");
+      Console.WriteLine(new string('=', 46));
     }
   }
 

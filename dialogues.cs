@@ -2,10 +2,25 @@ class Dialogues
 {
     public static void DialoguesEffect(string text, int delay)
     {
+        bool isFastMode = false;
+
         for (int i = 0; i < text.Length; i++)
         {
             Console.Write(text[i]);
-            Thread.Sleep(delay);
+
+            while (Console.KeyAvailable)
+            {
+                var key = Console.ReadKey(true).Key;
+
+                if (key == ConsoleKey.Spacebar)
+                {
+                    isFastMode = true;
+                }
+            }
+
+            int currentDelay = isFastMode ? delay / 5 : delay;
+
+            Thread.Sleep(currentDelay);
         }
 
         while (Console.KeyAvailable)

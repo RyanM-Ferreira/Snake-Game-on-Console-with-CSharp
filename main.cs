@@ -23,14 +23,21 @@
     {
       Console.SetCursorPosition(0, 0);
 
-      Console.WriteLine("Snake Game On Console - C#: \n");
+      Console.WriteLine("\n=====================================");
+      Console.WriteLine("|  SNAKE GAME - C# CONSOLE          |");
+      Console.WriteLine("=====================================\n");
 
-      Console.WriteLine(options == startGame ? "-> Start" : "   Start");
+      Console.WriteLine(options == startGame ? "-> Start Game" : "   Start Game");
       Console.WriteLine(options == optionsMenu ? "-> Options" : "   Options");
       Console.WriteLine(options == quit ? "-> Quit" : "   Quit");
 
-      Console.WriteLine("\nUse the arrow keys to navigate\nand Enter to select.");
-      Console.WriteLine($"\nv{version}");
+      Console.WriteLine("\n-------------------------------------");
+      Console.WriteLine("|   Use arrows to navigate          |");
+      Console.WriteLine("|   Press ENTER to select!          |");
+      Console.WriteLine("-------------------------------------\n");
+
+
+      Console.WriteLine($"Version: v{version}");
 
       ConsoleKeyInfo pressedKey = Console.ReadKey(true);
 

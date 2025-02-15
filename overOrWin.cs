@@ -18,7 +18,7 @@ class Result
             gameEstate = "You Won!\n";
         }
 
-        Dialogues.DialoguesEffect(gameEstate + key, 50);
+        Dialogues.DialoguesEffect(gameEstate + key, 15);
 
         while (true)
         {
