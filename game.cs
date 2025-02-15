@@ -1,13 +1,11 @@
-using System.Runtime.CompilerServices;
-
 class InGame
 {
   public static void GameFunction()
   {
     Console.Clear();
 
-    int mapHeight = 20;
-    int mapWidth = 35;
+    int mapHeight = 15;
+    int mapWidth = 20;
 
     int[] PosX = new int[mapHeight * mapWidth];
     int[] PosY = new int[mapHeight * mapWidth];
@@ -29,7 +27,7 @@ class InGame
 
     bool debugMenuIsActive = false;
 
-    int runDelay = 150;
+    int runDelay = 20;
 
     Console.CursorVisible = false;
     spawnFruit(ref fruitX, ref fruitY, mapWidth, mapHeight);
