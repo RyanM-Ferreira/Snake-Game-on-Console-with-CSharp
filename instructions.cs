@@ -11,7 +11,9 @@ class Instructions
         Console.WriteLine("\n=============================\n" +
                        "|     GAME INSTRUCTIONS     |\n" +
                        "=============================\n");
+
         Dialogues.DialoguesEffect(controls + instructions, 20);
+        
         Console.WriteLine("\n=============================\n" +
                      "|  Press ENTER to start...  |\n" +
                      "=============================\n");

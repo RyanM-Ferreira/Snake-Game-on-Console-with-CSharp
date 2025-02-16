@@ -12,7 +12,7 @@
   static void ShowMenu()
   {
     Console.CursorVisible = false;
-    
+
     int selectedOption = 0;
     ConsoleKeyInfo pressedKey = new ConsoleKeyInfo();
 

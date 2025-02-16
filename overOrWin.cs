@@ -7,18 +7,18 @@ class Result
         Console.Clear();
 
         string key = "\nPress Enter to Return to the Menu\nor R to restart the game!\n";
-        string gameEstate = " ";
+        string gameResult = " ";
 
         if (isGameOver)
         {
-            gameEstate = "Game Over!\n";
+            gameResult = "Game Over!\n";
         }
         else if (Won)
         {
-            gameEstate = "You Won!\n";
+            gameResult = "You Won!\n";
         }
 
-        Dialogues.DialoguesEffect(gameEstate + key, 15);
+        Dialogues.DialoguesEffect(gameResult + key, 15);
 
         while (true)
         {
