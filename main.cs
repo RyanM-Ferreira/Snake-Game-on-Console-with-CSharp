@@ -1,9 +1,5 @@
 ﻿class Program
 {
-  const int startGame = 0;
-  const int optionsMenu = 1;
-  const int quit = 2;
-
   const double version = 0.5;
 
   public static void Main()
@@ -15,9 +11,10 @@
 
   static void ShowMenu()
   {
-    int options = 0;
-
     Console.CursorVisible = false;
+    
+    int selectedOption = 0;
+    ConsoleKeyInfo pressedKey = new ConsoleKeyInfo();
 
     while (true)
     {
@@ -27,42 +24,32 @@
       Console.WriteLine("|  SNAKE GAME - C# CONSOLE          |");
       Console.WriteLine("=====================================\n");
 
-      Console.WriteLine(options == startGame ? "-> Start Game" : "   Start Game");
-      Console.WriteLine(options == optionsMenu ? "-> Options" : "   Options");
-      Console.WriteLine(options == quit ? "-> Quit" : "   Quit");
+      Console.WriteLine(selectedOption == 0 ? "-> Start Game" : "   Start Game");
+      Console.WriteLine(selectedOption == 1 ? "-> Options" : "   Options");
+      Console.WriteLine(selectedOption == 2 ? "-> Quit" : "   Quit");
 
       Console.WriteLine("\n-------------------------------------");
       Console.WriteLine("|   Use arrows to navigate          |");
       Console.WriteLine("|   Press ENTER to select!          |");
       Console.WriteLine("-------------------------------------\n");
 
-
       Console.WriteLine($"Version: v{version}");
 
-      ConsoleKeyInfo pressedKey = Console.ReadKey(true);
-
-      if (pressedKey.Key == ConsoleKey.UpArrow && options > 0)
-      {
-        options--;
-      }
-      else if (pressedKey.Key == ConsoleKey.DownArrow && options < 2)
-      {
-        options++;
-      }
+      Menu.Navigate(ref selectedOption, ref pressedKey);
 
       if (pressedKey.Key == ConsoleKey.Enter)
       {
-        if (options == startGame)
+        if (selectedOption == 0)
         {
           Instructions.ShowInstructions();
           break;
         }
-        else if (options == optionsMenu)
+        else if (selectedOption == 1)
         {
           Options.OptionsMenu();
           break;
         }
-        else if (options == quit)
+        else if (selectedOption == 2)
         {
           Console.Clear();
           Console.WriteLine("\nSaindo...");

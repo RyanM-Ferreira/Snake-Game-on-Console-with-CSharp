@@ -16,16 +16,9 @@ class Options()
             Console.WriteLine(selectedOption == 0 ? "-> Option 1" : "   Option 1");
             Console.WriteLine(selectedOption == 1 ? "-> Back" : "   Back");
 
-            ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+            ConsoleKeyInfo pressedKey = new ConsoleKeyInfo();
 
-            if (pressedKey.Key == ConsoleKey.UpArrow && selectedOption > 0)
-            {
-                selectedOption--;
-            }
-            else if (pressedKey.Key == ConsoleKey.DownArrow && selectedOption < 1)
-            {
-                selectedOption++;
-            }
+            Menu.Navigate(ref selectedOption, ref pressedKey);
 
             if (pressedKey.Key == ConsoleKey.Enter)
             {
