@@ -4,11 +4,11 @@ class InGame
   {
     Console.Clear();
 
-    int mapHeight = 15;
-    int mapWidth = 20;
+    int mapHeight = 5;
+    int mapWidth = 10;
 
-    int[] PosX = new int[mapHeight * mapWidth];
-    int[] PosY = new int[mapHeight * mapWidth];
+    int[] PosX = new int[(mapHeight * mapWidth)];
+    int[] PosY = new int[(mapHeight * mapWidth)];
 
     PosX[0] = mapWidth / 2;
     PosY[0] = mapHeight / 2;
@@ -27,10 +27,10 @@ class InGame
 
     bool debugMenuIsActive = false;
 
-    int runDelay = 20;
+    int runDelay = 180;
 
     Console.CursorVisible = false;
-    spawnFruit(ref fruitX, ref fruitY, mapWidth, mapHeight);
+    spawnFruit(ref fruitX, ref fruitY, mapWidth, mapHeight, snakeLength, PosX, PosY);
 
     while (true)
     {
@@ -65,19 +65,12 @@ class InGame
         }
         if (pressedKey.Key == ConsoleKey.D)
         {
-          if (debugMenuIsActive)
-          {
-            debugMenuIsActive = false;
-          }
-          else if (!debugMenuIsActive)
-          {
-            debugMenuIsActive = true;
-          }
+          debugMenuIsActive = !debugMenuIsActive;
         }
       }
 
       // Atualiza a posiç~ao dos segmentos da cobra, trocando o atual pela posição do segmento anterior.
-      for (int i = snakeLength; i > 0; i--)
+      for (int i = snakeLength - 1; i > 0; i--)
       {
         PosX[i] = PosX[i - 1];
         PosY[i] = PosY[i - 1];
@@ -91,20 +84,19 @@ class InGame
       if (PosX[0] == fruitX && PosY[0] == fruitY)
       {
         score++;
-        snakeLength++;
+        snakeLength += 1;
 
-        for (int i = 0; i < snakeLength; i++)
-        {
-          while (PosX[i] == fruitX && PosY[i] == fruitY)
-          {
-            spawnFruit(ref fruitX, ref fruitY, mapWidth, mapHeight);
-          }
-        }
+        spawnFruit(ref fruitX, ref fruitY, mapWidth, mapHeight, snakeLength, PosX, PosY);
       }
 
       // Verifica se a cobra colidiu com ela mesma.
-      for (int i = 3; i < snakeLength; i++)
+      for (int i = snakeLength - 1; i > 2; i--)
       {
+        if (i >= PosX.Length || i >= PosY.Length)
+        {
+          continue;
+        }
+
         if (PosX[0] == PosX[i] && PosY[0] == PosY[i])
         {
           isGameOver = true;
@@ -141,7 +133,7 @@ class InGame
           }
           else if (y == -1 || y == mapHeight + 1)
           {
-            meshGeneration += "-";
+            meshGeneration += "=";
           }
           else if (PosX[0] == x && PosY[0] == y)
           {
@@ -201,12 +193,12 @@ class InGame
 
     if (debugMenuIsActive)
     {
-      Console.WriteLine("================= DEBUG MENU =================");
-      Console.WriteLine($"PosX: {PosX[0],-3}; PosY: {PosY[0],-3}; Snake Size: {snakeLength,-3}");
-      Console.WriteLine($"DirectionX: {directionX,-3}; DirectionY: {directionY,-3}");
-      Console.WriteLine($"FruitX: {fruitX,-3}; FruitY: {fruitY,-3}");
-      Console.WriteLine($"Map Width: {mapWidth,-3}; Map Height: {mapHeight,-3}; Map Size: {mapWidth * mapHeight,-3}");
-      Console.WriteLine(new string('=', 46));
+      Console.WriteLine("=================== DEBUG MENU ===================");
+      Console.WriteLine($"| PosX: {PosX[0],-3}; PosY: {PosY[0],-3}; Snake Size: {snakeLength,-3}");
+      Console.WriteLine($"| DirectionX: {directionX,-3}; DirectionY: {directionY,-3}");
+      Console.WriteLine($"| FruitX: {fruitX,-3}; FruitY: {fruitY,-3}");
+      Console.WriteLine($"| Map Width: {mapWidth,-3}; Map Height: {mapHeight,-3}; Map Size: {mapWidth * mapHeight,-3}");
+      Console.WriteLine(new string('=', 50));
     }
     else if (!debugMenuIsActive)
     {
@@ -214,10 +206,26 @@ class InGame
     }
   }
 
-  static void spawnFruit(ref int fruitX, ref int fruitY, int mapWidth, int mapHeight)
+  static void spawnFruit(ref int fruitX, ref int fruitY, int mapWidth, int mapHeight, int snakeLength, int[] PosX, int[] PosY)
   {
     Random random = new Random();
-    fruitX = random.Next(0, mapWidth);
-    fruitY = random.Next(0, mapHeight);
+    bool validPosition;
+
+    do
+    {
+      fruitX = random.Next(0, mapWidth);
+      fruitY = random.Next(0, mapHeight);
+      validPosition = true;
+
+      for (int i = 0; i < snakeLength; i++)
+      {
+        if (PosX[i] == fruitX && PosY[i] == fruitY)
+        {
+          validPosition = false;
+          break;
+        }
+      }
+
+    } while (!validPosition);
   }
 }

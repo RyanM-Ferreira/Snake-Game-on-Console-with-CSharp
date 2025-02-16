@@ -18,7 +18,7 @@ class Dialogues
                 }
             }
 
-            int currentDelay = isFastMode ? delay / 10 : delay;
+            int currentDelay = isFastMode ? 0 : delay;
 
             Thread.Sleep(currentDelay);
         }
